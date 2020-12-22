@@ -5,7 +5,14 @@
       <v-col cols="12" sm="3">
         <list-of-items v-if="data && data.length" :items="data" />
         <v-divider class="my-5" />
-        <v-btn class="hidden-xs-only" large @click="isGrid = !isGrid" block color="primary" outlined>
+        <v-btn
+          class="hidden-xs-only"
+          large
+          @click="isGrid = !isGrid"
+          block
+          color="primary"
+          outlined
+        >
           {{ isGrid ? "List View" : "Grid View" }}
           <v-icon right>{{
             isGrid ? "mdi-format-list-checkbox" : "mdi-grid"
@@ -41,7 +48,11 @@
             v-for="(item, i) in filterdData"
             :key="i"
           >
-            <item-card :is-grid="isGrid" :item="item" />
+            <item-card
+              @updateTitleName="item.Title = $event"
+              :is-grid="isGrid"
+              :item="item"
+            />
           </v-col>
 
           <!-- Fetch data error alert and no found data in serach alert -->
@@ -141,8 +152,10 @@ export default {
       );
     },
     toShowAlert() {
-      return !this.isAppLoading && (this.filterdData.length > 0 || this.isError)
-    }
+      return (
+        !this.isAppLoading && (this.filterdData.length > 0 || this.isError)
+      );
+    },
   },
   created() {
     this.getPageData();

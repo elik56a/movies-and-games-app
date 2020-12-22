@@ -87,6 +87,7 @@ export default {
           Title: newName,
         });
         if (success) {
+          this.$emit('updateTitleName', newTitle)
           this.setSuccessAlert({
             text: `The title successfully changed to: <em> ${newTitle} </em>`,
             title: 'Update Successfully'
