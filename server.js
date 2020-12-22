@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const history = require('connect-history-api-fallback');
 // routes
 const mainRoute = require('./routes/main');
 
@@ -17,7 +16,7 @@ app.use('/api' ,mainRoute);
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('build'));
 
-    app.get(/.*/ , (req,res) => res.sendFile(__dirname + '/public/index.html'))
+    app.get(/.*/ , (req,res) => res.sendFile('build/index.html'))
 }
 
 

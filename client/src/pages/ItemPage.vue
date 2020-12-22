@@ -12,7 +12,7 @@
             <v-col cols="12" sm="6">
               <poster-image aspect-ratio="1" :src="item.Poster" />
             </v-col>
-            <v-col cols="12" sm="12">
+            <v-col cols="12" sm="6">
               <v-card-title>
                 {{ item.Title }}
               </v-card-title>
