@@ -45,9 +45,9 @@ export default {
     };
   },
   watch: {
-    isSortAsc(newVal) { // watch on this flag to change sort icon 
+    isSortAsc(newVal) { // watch on this flag to change sort icon up or down
       const sortObj = this.actionButtons.find(el => el.text === 'Sort'); // get the sort button obj
-      sortObj.icon = newVal ? 'mdi-arrow-down' : 'mdi-arrow-up'; // cahnge dynamicly the arrow icob
+      sortObj.icon = newVal ? 'mdi-arrow-down' : 'mdi-arrow-up'; // cahnge dynamicly the arrow icon
     }
   }
 };

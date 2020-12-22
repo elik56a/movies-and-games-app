@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
+      
       <!-- List of items section and grid/list btn -->
       <v-col cols="12" sm="3">
         <list-of-items v-if="data && data.length" :items="data" />
@@ -159,7 +160,7 @@ export default {
   },
   created() {
     this.getPageData();
-    this.isGrid = this.$vuetify.breakpoint.xsOnly;
+    this.isGrid = this.$vuetify.breakpoint.xsOnly; // in mobile view - only grid view
   },
 };
 </script>

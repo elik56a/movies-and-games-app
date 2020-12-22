@@ -2,8 +2,8 @@
   <v-img
     :aspect-ratio="aspectRatio"
     contain
-    lazy-src="@/assets/no-available.png"
-    :src="src"
+    lazy-src="@/assets/default-placeholder.png"
+    :src="getSrc"
   >
     <slot />
   </v-img>
@@ -13,5 +13,13 @@
 export default {
   name: "PosterImage",
   props: ["src", "aspectRatio"],
+  computed: {
+      getSrc() {
+        if(this.src && this.src !== 'N/A')
+          return this.src;
+
+          return require('@/assets/no-available.png');
+      }
+  }
 };
 </script>

@@ -43,14 +43,17 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <alert @close="alertData.visible = false" v-bind="{ alertData }" />
   </v-container>
 </template>
 
 <script>
 import { formatDateWithSlash } from "@/utils/formatDates";
-
+import alert from "@/mixins/alert";
 export default {
   name: "ItemPage",
+  mixins: [alert],
   data() {
     return {
       item: {},
@@ -58,11 +61,16 @@ export default {
   },
   methods: {
     async getPageData() {
-      const itemId = this.$route.params.item_id;
-      this.$store.commit("UPDATE_APP_LOADER", true);
-      const { data } = await this.$Api.get(`get-item/${itemId}`);
-      this.$store.commit("UPDATE_APP_LOADER", false);
-      this.setPageData(data);
+      try {
+        const itemId = this.$route.params.item_id;
+        this.$store.commit("UPDATE_APP_LOADER", true);
+        const { data } = await this.$Api.get(`get-item/${itemId}`);
+        this.$store.commit("UPDATE_APP_LOADER", false);
+        this.setPageData(data);
+      } catch (e) {
+        console.error(`error when fetch data: ${e}`);
+        this.setErrorAlert();
+      }
     },
     setPageData(data) {
       this.item = data;
