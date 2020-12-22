@@ -15,6 +15,7 @@ export default {
   props: ["src", "aspectRatio"],
   computed: {
       getSrc() {
+        console.log(this.src)
         if(this.src && this.src !== 'N/A')
           return this.src;
 

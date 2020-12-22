@@ -1,5 +1,5 @@
 <template>
-  <v-card :height="isGrid ? 450 : 250" width="100%" class="fill-height">
+  <v-card  width="100%" class="fill-height">
     <v-row>
       <v-col aling-item="center" :cols="isGrid ? 12 : 6">
         <v-hover v-slot:default="{ hover }">
@@ -87,15 +87,16 @@ export default {
           Title: newName,
         });
         if (success) {
-          this.$emit('updateTitleName', newTitle)
+          this.$emit('updateTitleName', newTitle); // update main page to change the value
           this.setSuccessAlert({
             text: `The title successfully changed to: <em> ${newTitle} </em>`,
             title: 'Update Successfully'
          })
         }
-        else return this.setErrorAlert()
+        else return this.setErrorAlert();
       } catch (e) {
-         this.setErrorAlert()
+        console.error(e);
+         this.setErrorAlert();
       }
     },
   },
