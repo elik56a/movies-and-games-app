@@ -87,6 +87,7 @@ export default {
           Title: newName,
         });
         if (success) {
+          this.editNameMode = false; //reset flag
           this.$emit('updateTitleName', newTitle); // update main page to change the value
           this.setSuccessAlert({
             text: `The title successfully changed to: <em> ${newTitle} </em>`,
