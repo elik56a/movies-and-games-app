@@ -45,7 +45,7 @@
           </v-col>
 
           <!-- Fetch data error alert and no found data in serach alert -->
-          <v-col cols="11" v-if="filterdData.length === 0 || isError">
+          <v-col cols="11" v-if="toShowAlert">
             <v-alert
               text
               elevation="4"
@@ -125,7 +125,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["selectedCategory"]),
+    ...mapState(["selectedCategory", "isAppLoading"]),
     itemsBySelectedCategory() {
       if (!this.selectedCategory) return this.data; // in case user didnt select any category - return all data
       return this.data.filter((el) => el.Type === this.selectedCategory); // get only the relevant
@@ -140,6 +140,9 @@ export default {
           el.Year.includes(this.searchText)
       );
     },
+    toShowAlert() {
+      return !this.isAppLoading && (this.filterdData.length > 0 || this.isError)
+    }
   },
   created() {
     this.getPageData();
