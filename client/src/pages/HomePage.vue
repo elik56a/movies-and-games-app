@@ -56,7 +56,7 @@
           </v-col>
 
           <!-- Fetch data error alert and no found data in serach alert -->
-          <v-col cols="11" v-if="toShowAlert">
+          <v-col cols="12" sm="11" v-if="toShowAlert">
             <v-alert
               text
               elevation="4"
@@ -153,7 +153,7 @@ export default {
     },
     toShowAlert() {
       return (
-        !this.isAppLoading && (this.filterdData.length > 0 || this.isError)
+        !this.isAppLoading && (this.filterdData.length === 0  || this.isError)
       );
     },
   },
